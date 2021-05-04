@@ -68,7 +68,6 @@ class MainActivity : AppCompatActivity() {
 
         }.start()
 
-
     }
 
 
@@ -77,7 +76,10 @@ class MainActivity : AppCompatActivity() {
      */
     private fun pauseTimer() {
         if (countDownTimer != null) {
+
+            // Cancel the current timer
             countDownTimer!!.cancel()
+
         }
     }
 

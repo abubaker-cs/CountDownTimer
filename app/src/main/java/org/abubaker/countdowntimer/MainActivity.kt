@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     *  Function is used to reset the count down timer which is running and set
+     *  Function is used to reset the count down timer which is running
      */
     private fun resetTimer() {
         if (countDownTimer != null) {

@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         // Passing pauseOffsetL will help us in restarting the timer
         countDownTimer = object : CountDownTimer(timerDuration - pauseOffsetL, 1000) {
 
-            // onTick()
+            // onTick() - it is called on every countDownInterval (1 sec = 1000)
             override fun onTick(millisUntilFinished: Long) {
                 this@MainActivity.pauseOffset = timerDuration - millisUntilFinished
                 binding.tvTimer.text = (millisUntilFinished / 1000).toString()
@@ -66,24 +66,39 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Timer is finished", Toast.LENGTH_SHORT).show()
             }
 
-        }
+        }.start()
 
 
     }
 
 
     /**
-     *
+     * Function is used to pause the count down timer which is running
      */
     private fun pauseTimer() {
-        TODO("Not yet implemented")
+        if (countDownTimer != null) {
+            countDownTimer!!.cancel()
+        }
     }
 
     /**
-     *
+     *  Function is used to reset the count down timer which is running and set
      */
     private fun resetTimer() {
-        TODO("Not yet implemented")
+        if (countDownTimer != null) {
+
+            // Cancel the current timer
+            countDownTimer!!.cancel()
+
+            // Set tv_timer's text back to 60 seconds
+            binding.tvTimer.text = "${(timerDuration / 1000).toString()}"
+
+            // Set it back to null
+            countDownTimer = null
+
+            // Set pauseOffset back to 0, otherwise we may face confusing issues in the app
+            pauseOffset = 0
+        }
     }
 
 
